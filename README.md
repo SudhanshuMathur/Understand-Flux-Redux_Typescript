@@ -56,3 +56,12 @@ git push -u origin master
 You can initialize this repository with code from a Subversion, Mercurial, or TFS project.
 
 Import code
+
+#Create Branch and Commit
+- git checkout -b flux_reducestore_start
+- git commit -m 'basic bootstrap for reduce store start'
+- git push --set-upstream origin flux_reducestore_start
+- git checkout master
+- git merge flux_reducestore_start
+- git push
+

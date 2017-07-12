@@ -8,14 +8,17 @@ var cbView = function (objCurrentState: any){
     document.getElementById('userName').innerText = objCurrentState.userName;
 }
 
-let objStore = new Store();
+//let objStore = new Store();
+//let objDispatcher = new Dispatcher();
 let objDispatcher = new Dispatcher();
+let objStore = new Store(objDispatcher);
+
 
 //Register View listner with Store
 objStore.RegisterView(cbView);
 
 //Register Store with Dispatcher
-objDispatcher.RegisterStore(objStore);
+//objDispatcher.RegisterStore(objStore);
 
 //Helper or Callback Method - Dispatcher
 //here function input variable objUserNameInput => event - used in order to implement event delegation.

@@ -2,27 +2,29 @@ import { ActionConstants } from "./ActionConstants";
 
 export class Store {
     private objState: any;
-    private objViewListners: any[];
+    private cbViews: any[];
 
-    constructor() {
+    constructor(objDispatcher: any) {
         console.log("Store - constructor");
         this.objState = this.GetInitialState();
-         this.objViewListners =  new Array();
+        this.cbViews = new Array();
 
-         
+        objDispatcher.RegisterStore(this.HandleAction.bind(this));
+
     }
 
     GetInitialState() {
-         console.log("Store - GetInitialState");
+        console.log("Store - GetInitialState");
         return { userName: "Jim" };
     }
 
-    RegisterView(objViewListner: any) {
-          this.objViewListners.push(objViewListner);
+    RegisterView(cbView: any) {
+        console.log("Store - RegisterView");
+        this.cbViews.push(cbView);
     }
 
     HandleAction(objAction: any) {
-          console.log("Store - HandleAction");
+        console.log("Store - HandleAction");
         //Handle action , and update the state and notify view
         switch (objAction.type) {
             case ActionConstants.ACTION_UPDATE_USERNAME:
@@ -36,7 +38,7 @@ export class Store {
     }
 
     UpdateViews() {
-           console.log("Store - UpdateViews");
-        this.objViewListners.forEach(objViewListner => objViewListner(this.objState));
+        console.log("Store - UpdateViews");
+        this.cbViews.forEach(cbView => cbView(this.objState));
     }
 }

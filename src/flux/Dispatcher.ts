@@ -1,22 +1,22 @@
 export class Dispatcher {
 
-    private objStores: any[];
+    private cbStores: any[];
 
     constructor(){
         console.log("Dispatcher - constructor");
-        this.objStores =  new Array();
+        this.cbStores =  new Array();
     }
 
-    RegisterStore(objStore: any) {
+    RegisterStore(cbStore: any) {
          console.log("Dispatcher - RegisterStore");
-        this.objStores.push(objStore);
+        this.cbStores.push(cbStore);
 
     }
 
     DispatchAction(objAction: any) {
         console.log("Dispatcher - DispatchAction");
         //Call the Store(or multiple stores) and call the store method which handler the action we pass to it
-        this.objStores.forEach(objStore => objStore.HandleAction(objAction));
+        this.cbStores.forEach(cbStore => cbStore(objAction));
     }
 
 }

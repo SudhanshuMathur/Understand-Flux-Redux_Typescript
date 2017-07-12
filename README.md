@@ -3,6 +3,10 @@
 Sudhanshu TypeScript template. A minimal skeleton project to get a TypeScript
 project working along with Webpack 2. 
 
+# Facebook presentation explaining the issue
+- https://drive.google.com/file/d/0B6FDE5kMwYTldkdLWEo1X05rQzA/view
+
+
 # HOWTO
 
 - Get a copy of the template:

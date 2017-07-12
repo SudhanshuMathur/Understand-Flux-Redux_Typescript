@@ -1,7 +1,6 @@
-import { ActionConstants } from "./ActionConstants";
 
 export class Store {
-    private objState: any;
+    protected objState: any;
     private cbViews: any[];
 
     constructor(objDispatcher: any) {
@@ -15,7 +14,7 @@ export class Store {
 
     GetInitialState() {
         console.log("Store - GetInitialState");
-        return { userName: "Jim" };
+         throw new Error("subclass must ovveride getInitialState() method");
     }
 
     RegisterView(cbView: any) {
@@ -25,16 +24,7 @@ export class Store {
 
     HandleAction(objAction: any) {
         console.log("Store - HandleAction");
-        //Handle action , and update the state and notify view
-        switch (objAction.type) {
-            case ActionConstants.ACTION_UPDATE_USERNAME:
-                //Updating state
-                this.objState.userName = objAction.value;
-
-                //Need to update the listening views
-                this.UpdateViews();
-                break;
-        }
+        throw new Error("subclass must ovveride HandleAction() method");
     }
 
     UpdateViews() {

@@ -1,24 +1,19 @@
-import { ActionCreator } from "./flux/ActionCreator";
-import { ActionConstants } from "./flux/ActionConstants";
-import { Dispatcher } from "./flux/Dispatcher";
-import { Store } from "./flux/Store";
+import { ActionCreator } from "./flux/flux_main/ActionCreator";
+import { ActionConstants } from "./flux/flux_main/ActionConstants";
+import { Dispatcher } from "./flux/flux_main/Dispatcher";
+import { ControlPanelStore } from "./flux/flux_custom/ControlPanelStore";
 
 //Register View listner with Store - callback
 var cbView = function (objCurrentState: any){
+    console.log("ControlPanel - cbView to render changes to view");
     document.getElementById('userName').innerText = objCurrentState.userName;
 }
 
-//let objStore = new Store();
-//let objDispatcher = new Dispatcher();
 let objDispatcher = new Dispatcher();
-let objStore = new Store(objDispatcher);
-
+let objControlPanelStore = new ControlPanelStore(objDispatcher);
 
 //Register View listner with Store
-objStore.RegisterView(cbView);
-
-//Register Store with Dispatcher
-//objDispatcher.RegisterStore(objStore);
+objControlPanelStore.RegisterView(cbView);
 
 //Helper or Callback Method - Dispatcher
 //here function input variable objUserNameInput => event - used in order to implement event delegation.
